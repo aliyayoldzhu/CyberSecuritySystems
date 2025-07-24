@@ -1,11 +1,12 @@
 "use client";
 
-import { Box, Typography, Button, Grid, Paper, Container } from "@mui/material";
+import { Box, Typography, Button, Grid, Paper, Container, AppBar, Toolbar } from "@mui/material";
 import { useRouter } from "next/navigation";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import StorageIcon from "@mui/icons-material/Storage";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SecurityIcon from "@mui/icons-material/Security";
+import NextLink from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -36,6 +37,46 @@ export default function Home() {
 
   return (
     <Container maxWidth="lg">
+      {/* Top Navigation Bar */}
+      <AppBar 
+        position="fixed" 
+        color="transparent" 
+        elevation={0}
+        sx={{ 
+          background: "rgba(0, 0, 0, 0.8)",
+          backdropFilter: "blur(10px)",
+        }}
+      >
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <Typography variant="h6" component="div" sx={{ fontWeight: 600 }}>
+            Cyber Security System
+          </Typography>
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <Button 
+              component={NextLink} 
+              href="/auth/login"
+              variant="outlined"
+              sx={{ color: "white", borderColor: "white" }}
+            >
+              Sign In
+            </Button>
+            <Button 
+              component={NextLink} 
+              href="/auth/signup"
+              variant="contained"
+              sx={{
+                background: "linear-gradient(135deg, #9160cdff 0%, #3d3adaff 100%)",
+                "&:hover": {
+                  background: "linear-gradient(135deg, #9160cddd 0%, #3d3adadd 100%)",
+                },
+              }}
+            >
+              Sign Up
+            </Button>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
       <Box
         sx={{
           minHeight: "100vh",
@@ -43,7 +84,7 @@ export default function Home() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          py: 4,
+          py: 8,
         }}
       >
         {/* Header Section */}
