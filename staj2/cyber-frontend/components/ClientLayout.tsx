@@ -1,21 +1,9 @@
 "use client";
 
-import { Box, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import { usePathname } from "next/navigation";
-
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#9160cdff",
-    },
-    secondary: {
-      main: "#3d3adaff",
-    },
-  },
-});
 
 export default function ClientLayout({
   children,
@@ -27,24 +15,16 @@ export default function ClientLayout({
 
   // If it's the home page, don't show sidebar and navbar
   if (isHomePage) {
-    return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </ThemeProvider>
-    );
+    return <>{children}</>;
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box sx={{ display: "flex" }}>
-        <Sidebar />
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Navbar title="Cyber Security System" />
-          <Box sx={{ p: 3 }}>{children}</Box>
-        </Box>
+    <Box sx={{ display: "flex" }}>
+      <Sidebar />
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Navbar title="Cyber Security System" />
+        <Box sx={{ p: 3 }}>{children}</Box>
       </Box>
-    </ThemeProvider>
+    </Box>
   );
 }
