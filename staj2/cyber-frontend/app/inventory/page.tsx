@@ -5,6 +5,7 @@ import { Typography } from "@mui/material";
 import SearchBar from "@/components/SearchBar";
 import InventoryTable from "@/components/InventoryTable";
 import { InventoryItem } from "@/types/InventoryItem";
+import ClientLayout from "@/components/ClientLayout";
 
 const mockData: InventoryItem[] = [
   {
@@ -78,7 +79,6 @@ const mockData: InventoryItem[] = [
 export default function InventoryPage() {
   const [query, setQuery] = useState("");
 
-  // Optional: search logic
   const filteredItems = mockData.filter(
     (item) =>
       item.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -88,14 +88,17 @@ export default function InventoryPage() {
   );
 
   return (
-    <>
+    <ClientLayout>
       <Typography variant="h4" gutterBottom>
-        Inventory
+        Inventory Management
+      </Typography>
+      <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+        Search and manage all network devices and equipment
       </Typography>
 
       <SearchBar value={query} onChange={setQuery} />
 
       <InventoryTable items={filteredItems} />
-    </>
+    </ClientLayout>
   );
 }
