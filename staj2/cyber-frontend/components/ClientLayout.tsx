@@ -22,7 +22,7 @@ export default function ClientLayout({
     <Box sx={{ display: "flex" }}>
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Navbar title="Cyber Security System" />
+        <Navbar title="Cyber Security" />
         <Box sx={{ p: 3 }}>{children}</Box>
       </Box>
     </Box>

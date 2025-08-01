@@ -7,6 +7,7 @@ import {
   ListItemIcon,
   ListItemText,
   Toolbar,
+  useTheme,
 } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import StorageIcon from "@mui/icons-material/Storage";
@@ -22,6 +23,8 @@ const navItems = [
 ];
 
 export default function Sidebar() {
+  const theme = useTheme();
+
   return (
     <Drawer
       variant="permanent"
@@ -31,16 +34,17 @@ export default function Sidebar() {
         [`& .MuiDrawer-paper`]: {
           width: drawerWidth,
           boxSizing: "border-box",
-          backgroundColor: "#000000ff",
+          backgroundColor: theme.palette.background.default,
+          color: theme.palette.text.primary,
         },
       }}
     >
       <Toolbar />
       <List>
         {navItems.map(({ text, icon, href }) => (
-          <Link href={href} key={text} passHref legacyBehavior>
-            <ListItemButton component="a">
-              <ListItemIcon>{icon}</ListItemIcon>
+          <Link href={href} key={text}>
+            <ListItemButton>
+              <ListItemIcon sx={{ color: "inherit" }}>{icon}</ListItemIcon>{" "}
               <ListItemText primary={text} />
             </ListItemButton>
           </Link>
